@@ -3,5 +3,6 @@
 defined( 'ABSPATH' ) || exit;
 
 return [
-    \CoquardcyrWpArticleScheduler\ServiceProvider::class,
+	\CoquardcyrWpArticleScheduler\Database\ServiceProvider::class,
+	\CoquardcyrWpArticleScheduler\ServiceProvider::class,
 ];
