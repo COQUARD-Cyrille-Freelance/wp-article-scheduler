@@ -1,0 +1,5 @@
+{
+  "e2e": {
+    "stepDefintions": "cypress/e2e/[filepath].{js,mjs,ts,tsx}"
+  }
+}
