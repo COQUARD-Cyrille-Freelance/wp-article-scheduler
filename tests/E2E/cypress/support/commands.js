@@ -25,3 +25,11 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import '@bigbite/wp-cypress/lib/cypress-support';
 import "@testing-library/cypress/add-commands";
+
+Cypress.Commands.add('fetchLastPost', () => {
+    const list = cy.wp('post list --format=json')
+    if(list.length === 0) {
+        return {};
+    }
+    return list.pop();
+})
