@@ -66,6 +66,10 @@ class ArticleSchedules extends Query {
      */
     protected $item_shape = Row::class;
 
+	public function create_row(array $data): Row {
+		return new Row((object) $data);
+	}
+
 	public function create_or_update( ScheduleRow $row) {
 		$old_row = $this->get_by_post_id($row->post_id);
 		if(! $old_row) {
