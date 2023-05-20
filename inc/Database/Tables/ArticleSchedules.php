@@ -54,6 +54,9 @@ class ArticleSchedules extends Table {
     protected function set_schema() {
         $this->schema = "
 			id               bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			post_id          bigint(20) unsigned NOT NULL,
+			status           varchar(255) default '',
+			change_date         timestamp           NOT NULL default '0000-00-00 00:00:00',
 			modified         timestamp           NOT NULL default '0000-00-00 00:00:00',
 			last_accessed    timestamp           NOT NULL default '0000-00-00 00:00:00',
 			PRIMARY KEY (id),

@@ -2,6 +2,7 @@
 
 namespace CoquardcyrWpArticleScheduler\Database\Queries;
 
+use CoquardcyrWpArticleScheduler\Database\Rows\ArticleSchedules as ScheduleRow;
 use CoquardcyrWpArticleScheduler\Dependencies\BerlinDB\Database\Query;
 use CoquardcyrWpArticleScheduler\Database\Rows\ArticleSchedules as Row;
 use CoquardcyrWpArticleScheduler\Database\Schemas\ArticleSchedules as Schema;
@@ -64,4 +65,31 @@ class ArticleSchedules extends Query {
      * @var mixed
      */
     protected $item_shape = Row::class;
+
+	public function create_or_update( ScheduleRow $row) {
+		$old_row = $this->get_by_post_id($row->post_id);
+		if(! $old_row) {
+			return $this->add_item((array) $row);
+		}
+		$data = array_merge((array) $old_row, (array) $row);
+		return $this->update_item($old_row->id, $data);
+	}
+
+	public function delete_by_post_id(int $post_id) {
+		$row = $this->delete_by_post_id($post_id);
+		if(! $row) {
+			return;
+		}
+		$this->delete_item($row->id);
+	}
+
+	public function get_by_post_id(int $post_id) {
+		$results = $this->query(['post_id' => $post_id]);
+
+		if(! $results|| count($results) === 0) {
+			return false;
+		}
+
+		return array_pop($results);
+	}
 }
