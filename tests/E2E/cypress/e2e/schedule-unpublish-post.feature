@@ -21,7 +21,7 @@ Feature: Schedule post for unpublish
     And I schedule the post to yesterday
     And I save the post
     Then The post should be saved
-    And The post should be prviate
+    And The post should be private
 
   Scenario: Schedule a draft post
     Given I have draft post
