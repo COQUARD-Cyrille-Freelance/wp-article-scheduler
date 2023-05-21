@@ -21,6 +21,6 @@ return [
 	'action_scheduler_queue_group' => 'coquardcyr_wp_article_scheduler',
 	'template_path'                => $plugin_launcher_path . '/files/templates/',
 	'root_directory'               => WP_CONTENT_DIR . '/cache/',
-	'renderer_cache_enabled'       => true,
+	'renderer_cache_enabled'       => false,
 	'renderer_caching_solution'    => [ WPFilesystemCache::class ],
 ];

@@ -18,6 +18,15 @@ class Subscriber implements SubscriberInterface {
 	protected $prefix;
 
 	/**
+	 * @param ArticleSchedules $query
+	 * @param string $prefix
+	 */
+	public function __construct( ArticleSchedules $query, string $prefix ) {
+		$this->query  = $query;
+		$this->prefix = $prefix;
+	}
+
+	/**
 	 * Returns an array of events that this subscriber wants to listen to.
 	 *
 	 * The array key is the event name. The value can be:
