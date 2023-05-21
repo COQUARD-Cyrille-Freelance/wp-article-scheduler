@@ -53,7 +53,14 @@ class Subscriber implements SubscriberInterface {
 	}
 
 	public function add_meta_box() {
-		add_meta_box( "{$this->prefix}schedule", __( 'Schedule the post', 'coquardcyrwparticlescheduler' ), [ $this, 'meta_box_content' ], 'post', 'side', 'default' );
+		/**
+		 * Metabox screen.
+		 * @param string[] $screen Metabox screen.
+		 * @return string[]
+		 */
+		$screen = apply_filters("{$this->prefix}metabox_screen", ['post', 'page']);
+
+		add_meta_box( "{$this->prefix}schedule", __( 'Schedule the post', 'coquardcyrwparticlescheduler' ), [ $this, 'meta_box_content' ], $screen, 'side', 'default' );
 	}
 
 	public function meta_box_content( WP_Post $post ) {
@@ -67,13 +74,13 @@ class Subscriber implements SubscriberInterface {
 		$keys['post_id'] = $post->post_id;
 		$keys['current_status'] = $scheduled->status ? : '';
 		$keys['date']           =  date('yyyy-mm-dd', $scheduled->change_date) ? : '';
-		$keys['min_date'] = date('yyyy-mm-dd', now());
+		$keys['min_date'] = date('yyyy-mm-dd', time());
 		$parameters = [
 			'keys' => $keys,
 		];
 
 		if ( ! apply_filters( "{$this->prefix}has_template", $template, $parameters, false ) ) {
-			$parameters['parameters'] = $this->generate_view_parameters( $parameters['keys'] );
+			$parameters['parameters'] = $this->generate_view_parameters( $parameters['keys'], $post );
 		}
 
 		do_action( "{$this->prefix}render_template", $template, $parameters );
