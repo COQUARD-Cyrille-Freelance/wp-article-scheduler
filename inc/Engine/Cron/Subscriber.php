@@ -64,6 +64,7 @@ class Subscriber implements SubscriberInterface {
 			'cron_schedules'                         => 'add_interval',
 			'init'                                   => 'schedule_cron',
 			"{$this->prefix}process_scheduled_posts" => 'process_scheduled_posts',
+			"{$this->prefix}process_scheduled" => ['process_scheduled', 10, 3],
 		];
 	}
 
@@ -120,5 +121,23 @@ class Subscriber implements SubscriberInterface {
 		foreach ( $rows as $row ) {
 			$this->queue->add_scheduled_post( $row->post_id, $this->status, $this->change_date );
 		}
+	}
+
+	public function process_scheduled( $post_id, $status, $change_date ) {
+		if($change_date > now()) {
+			return;
+		}
+
+		$post = get_post($post_id);
+
+		$this->query->delete_by_post_id($post_id);
+
+		if(! $post || ! $status ) {
+			return;
+		}
+
+		$post->post_status = $status;
+
+		wp_update_post($post);
 	}
 }
