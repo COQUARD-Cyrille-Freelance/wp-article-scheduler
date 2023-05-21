@@ -87,6 +87,11 @@ class ArticleSchedules extends Query {
 		$this->delete_item($row->id);
 	}
 
+	/**
+	 * @param int $post_id
+	 *
+	 * @return false|Row
+	 */
 	public function get_by_post_id(int $post_id) {
 		$results = $this->query(['post_id' => $post_id]);
 

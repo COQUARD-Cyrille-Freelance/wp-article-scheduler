@@ -21,9 +21,9 @@ class ServiceProvider extends AbstractServiceProvider {
 		$this->register_service( ArticleSchedules::class );
 
 		$this->register_service(
-			\CoquardcyrWpArticleScheduler\Database\Tables\ArticleSchedules::class,
+			Tables\ArticleSchedules::class,
 			function () {
-				$this->getContainer()->get( \CoquardcyrWpArticleScheduler\Database\Tables\ArticleSchedules::class );
+				$this->getContainer()->get( Tables\ArticleSchedules::class );
 			}
 			);
 	}

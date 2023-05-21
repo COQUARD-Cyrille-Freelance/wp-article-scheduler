@@ -58,7 +58,8 @@
         "wp-launchpad/action-scheduler": "^0.0",
         "woocommerce/action-scheduler": "^3.4",
         "berlindb/core": "^2.0",
-        "wp-launchpad/berlindb": "^1.0"
+        "wp-launchpad/berlindb": "^1.0",
+        "wp-launchpad/renderer": "^1.0"
     },
     "autoload": {
         "classmap": [
@@ -92,7 +93,8 @@
                 "wp-launchpad/core",
                 "wp-launchpad/autoresolver",
                 "wp-launchpad/action-scheduler",
-                "berlindb/core"
+                "berlindb/core",
+                "wp-launchpad/renderer"
             ]
         }
     },
