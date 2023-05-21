@@ -14,4 +14,15 @@ class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider
 			\CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::class,
 		];
 	}
+
+	/**
+	 * Return IDs from common subscribers.
+	 *
+	 * @return string[]
+	 */
+	public function get_common_subscribers(): array {
+		return [
+			\CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::class,
+		];
+	}
 }
