@@ -53,7 +53,7 @@ class Subscriber implements SubscriberInterface {
 	}
 
 	public function add_meta_box() {
-		add_meta_box( 'Schedule', __( 'Schedule the post', 'coquardcyrwparticlescheduler' ), [ $this, 'meta_box_content' ], 'post', 'side', 'default' );
+		add_meta_box( "{$this->prefix}schedule", __( 'Schedule the post', 'coquardcyrwparticlescheduler' ), [ $this, 'meta_box_content' ], 'post', 'side', 'default' );
 	}
 
 	public function meta_box_content( WP_Post $post ) {
