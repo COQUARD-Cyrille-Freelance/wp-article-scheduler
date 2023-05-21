@@ -31,8 +31,8 @@ class Test_maybeDeleteSchedule extends TestCase {
 
     public function set_up() {
         parent::set_up();
-        $this->query = Mockery::mock(ArticleSchedules::class);
-        $this->prefix = '';
+        $this->query = $this->createMock(ArticleSchedules::class);
+        $this->prefix = 'prefix';
 
         $this->subscriber = new Subscriber($this->query, $this->prefix);
     }
@@ -43,6 +43,5 @@ class Test_maybeDeleteSchedule extends TestCase {
     public function testShouldDoAsExpected( $config )
     {
         $this->subscriber->maybe_delete_schedule($config['new_post'], $config['old_post']);
-
     }
 }

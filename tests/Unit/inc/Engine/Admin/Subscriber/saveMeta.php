@@ -31,8 +31,8 @@ class Test_saveMeta extends TestCase {
 
     public function set_up() {
         parent::set_up();
-        $this->query = Mockery::mock(ArticleSchedules::class);
-        $this->prefix = '';
+        $this->query = $this->createMock(ArticleSchedules::class);
+        $this->prefix = 'prefix';
 
         $this->subscriber = new Subscriber($this->query, $this->prefix);
     }

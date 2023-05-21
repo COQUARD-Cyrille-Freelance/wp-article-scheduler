@@ -42,9 +42,9 @@ class Test_processScheduledPosts extends TestCase {
 
     public function set_up() {
         parent::set_up();
-        $this->prefix = '';
-        $this->plugin_name = '';
-        $this->query = Mockery::mock(ArticleSchedules::class);
+        $this->prefix = 'prefix';
+        $this->plugin_name = 'plugin_name';
+        $this->query = $this->createMock(ArticleSchedules::class);
         $this->queue = Mockery::mock(Queue::class);
 
         $this->subscriber = new Subscriber($this->prefix, $this->plugin_name, $this->query, $this->queue);
