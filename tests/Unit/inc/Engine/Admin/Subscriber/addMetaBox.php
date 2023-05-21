@@ -8,7 +8,7 @@ use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
 
 
 use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
-
+use Brain\Monkey\Functions;
 /**
  * @covers \CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::add_meta_box
  */
@@ -31,18 +31,16 @@ class Test_addMetaBox extends TestCase {
 
     public function set_up() {
         parent::set_up();
-        $this->query = Mockery::mock(ArticleSchedules::class);
-        $this->prefix = '';
+        $this->query = $this->createMock(ArticleSchedules::class);
+        $this->prefix = 'prefix';
 
         $this->subscriber = new Subscriber($this->query, $this->prefix);
     }
 
-    /**
-     * @dataProvider configTestData
-     */
-    public function testShouldDoAsExpected( $config )
+    public function testShouldDoAsExpected()
     {
+		Functions\when('__')->returnArg();
+		Functions\expect('add_meta_box')->with('prefixschedule','Schedule the post', [$this->subscriber, 'meta_box_content'], 'post', 'side', 'default');
         $this->subscriber->add_meta_box();
-
     }
 }

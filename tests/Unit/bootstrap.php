@@ -33,4 +33,3 @@ function load_original_files_before_mocking() {
 }
 
 load_original_files_before_mocking();
-require_once ROCKET_LAUNCHER_PLUGIN_ROOT . 'inc/compat.php';
