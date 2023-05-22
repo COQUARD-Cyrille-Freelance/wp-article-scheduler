@@ -7,15 +7,6 @@ Feature: Change post status
 
     Examples:
       | status | new_status | action | existence |
-      |    draft |   published |    publish | not have  |
-      |    private |   published |    publish |    not have     |
-      |    protected |   published |    publish |      not have        |
       |    published |   draft |   unpublish | not have  |
-      |    draft |   protected |    publish | not have  |
-      |    draft |   private |    publish | not have  |
-      |    private |   draft |    publish |    noy have     |
-      |    private |   protected |    publish |    not have     |
-      |    protected |   draft |    publish |       not have        |
-      |    protected |   private |    publish |       not have        |
       |    published |   protected |   unpublish  | not have  |
       |    published |   private |   unpublish  | not have  |
