@@ -8,15 +8,16 @@ use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
 
 
 use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
-
+use Brain\Monkey\Functions;
+use Brain\Monkey\Actions;
 /**
  * @covers \CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::meta_box_content
  */
 class Test_metaBoxContent extends TestCase {
 
-    /**
-     * @var ArticleSchedules
-     */
+	/**
+	 * @var ArticleSchedules
+	 */
     protected $query;
 
     /**
@@ -40,9 +41,16 @@ class Test_metaBoxContent extends TestCase {
     /**
      * @dataProvider configTestData
      */
-    public function testShouldDoAsExpected( $config )
+    public function testShouldDoAsExpected( $config, $expected )
     {
+		if($config['should_render']) {
+			Functions\expect('get_post_statuses')->andReturn($config['statuses']);
+			Actions\expectDone('prefixrender_template')->with($expected['template'], $expected['parameters']);
+		} else {
+			Functions\expect('get_post_statuses')->never();
+			Actions\expectDone('prefixrender_template')->never();
+		}
         $this->subscriber->meta_box_content($config['post']);
-
     }
+
 }

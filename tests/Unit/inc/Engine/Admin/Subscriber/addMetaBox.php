@@ -40,7 +40,7 @@ class Test_addMetaBox extends TestCase {
     public function testShouldDoAsExpected()
     {
 		Functions\when('__')->returnArg();
-		Functions\expect('add_meta_box')->with('prefixschedule','Schedule the post', [$this->subscriber, 'meta_box_content'], 'post', 'side', 'default');
+		Functions\expect('add_meta_box')->with('prefixschedule','Schedule the post', [$this->subscriber, 'meta_box_content'], ['post', 'page'], 'side', 'default');
         $this->subscriber->add_meta_box();
     }
 }

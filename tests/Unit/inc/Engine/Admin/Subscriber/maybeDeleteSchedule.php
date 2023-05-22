@@ -40,8 +40,13 @@ class Test_maybeDeleteSchedule extends TestCase {
     /**
      * @dataProvider configTestData
      */
-    public function testShouldDoAsExpected( $config )
+    public function testShouldDoAsExpected( $config, $expected )
     {
-        $this->subscriber->maybe_delete_schedule($config['new_post'], $config['old_post']);
+		if($config['same_status']) {
+			$this->query->expects(self::once())->method('delete_by_post_id')->with($expected['post_id']);
+		} else {
+			$this->query->expects(self::never())->method('delete_by_post_id');
+		}
+        $this->subscriber->maybe_delete_schedule( $config['post_id'], $config['new_post'], $config['old_post']);
     }
 }

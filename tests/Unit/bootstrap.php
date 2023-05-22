@@ -26,6 +26,7 @@ function load_original_files_before_mocking() {
         '/classes/WP_Error.php',
         '/classes/wpdb.php',
         '/classes/WPDieException.php',
+        '/classes/WP_Post.php',
     ];
     foreach ( $fixtures as $file ) {
         require_once ROCKET_LAUNCHER_TESTS_FIXTURES_DIR . $file;
