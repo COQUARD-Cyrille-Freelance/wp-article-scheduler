@@ -112,14 +112,14 @@ class Subscriber implements SubscriberInterface {
 				'meta_query'     => [
 					[
 						'key'     => 'change_date',
-						'value'   => now(),
+						'value'   => time(),
 						'compare' => '<=',
 					],
 				],
 			]
 			);
 		foreach ( $rows as $row ) {
-			$this->queue->add_scheduled_post( $row->post_id, $this->status, $this->change_date );
+			$this->queue->add_scheduled_post( $row->post_id, $row->status, $row->change_date );
 		}
 	}
 

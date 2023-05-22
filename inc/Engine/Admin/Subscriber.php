@@ -19,7 +19,7 @@ class Subscriber implements SubscriberInterface {
 
 	/**
 	 * @param ArticleSchedules $query
-	 * @param string $prefix
+	 * @param string           $prefix
 	 */
 	public function __construct( ArticleSchedules $query, string $prefix ) {
 		$this->query  = $query;
@@ -46,24 +46,29 @@ class Subscriber implements SubscriberInterface {
 	 */
 	public function get_subscribed_events() {
 		return [
-			'admin_init' => 'add_meta_box',
-			'save_post' => 'save_meta',
-			'post_updated' => ['maybe_delete_schedule', 10, 3],
+			'admin_init'   => 'add_meta_box',
+			'save_post'    => 'save_meta',
+			'post_updated' => [ 'maybe_delete_schedule', 10, 3 ],
 		];
 	}
 
 	public function add_meta_box() {
 		/**
 		 * Metabox screen.
+		 *
 		 * @param string[] $screen Metabox screen.
 		 * @return string[]
 		 */
-		$screen = apply_filters("{$this->prefix}metabox_screen", ['post', 'page']);
+		$screen = apply_filters( "{$this->prefix}metabox_screen", [ 'post', 'page' ] );
 
 		add_meta_box( "{$this->prefix}schedule", __( 'Schedule the post', 'coquardcyrwparticlescheduler' ), [ $this, 'meta_box_content' ], $screen, 'side', 'default' );
 	}
 
 	public function meta_box_content( WP_Post $post ) {
+
+		if ( 'publish' !== $post->post_status ) {
+			return;
+		}
 
 		$template = 'meta-box';
 
@@ -71,17 +76,15 @@ class Subscriber implements SubscriberInterface {
 
 		$keys = [];
 
-		$keys['post_id'] = $post->post_id;
-		$keys['current_status'] = $scheduled->status ? : '';
-		$keys['date']           =  date('yyyy-mm-dd', $scheduled->change_date) ? : '';
-		$keys['min_date'] = date('yyyy-mm-dd', time());
-		$parameters = [
+		$keys['post_id']        = $post->ID;
+		$keys['current_status'] = $scheduled && $scheduled->status ? : '';
+		$keys['date']           = $scheduled && $scheduled->status ? date( 'Y-m-d', $scheduled->change_date ) : '';
+		$keys['min_date']       = date( 'Y-m-d', time() );
+		$parameters             = [
 			'keys' => $keys,
 		];
 
-		if ( ! apply_filters( "{$this->prefix}has_template", $template, $parameters, false ) ) {
-			$parameters['parameters'] = $this->generate_view_parameters( $parameters['keys'], $post );
-		}
+		$parameters['parameters'] = $this->generate_view_parameters( $parameters['keys'], $post );
 
 		do_action( "{$this->prefix}render_template", $template, $parameters );
 	}
@@ -91,14 +94,6 @@ class Subscriber implements SubscriberInterface {
 
 		if ( key_exists( $post->post_status, $statuses ) ) {
 			unset( $statuses[ $post->post_status ] );
-		}
-
-		if ( 'publish' !== $post->post_status ) {
-			foreach ( $statuses as $key => $label ) {
-				if ( 'publish' !== $key ) {
-					unset( $statuses[ $key ] );
-				}
-			}
 		}
 
 		return array_merge(
@@ -112,35 +107,40 @@ class Subscriber implements SubscriberInterface {
 
 	public function save_meta( $post_id ) {
 
-		if ( ! isset( $_POST["meta_{$this->prefix}fields_meta_box_nonce"] ) )
+		if ( ! isset( $_POST[ "meta_{$this->prefix}fields_meta_box_nonce" ] ) ) {
 			return;
-
-		if ( ! wp_verify_nonce( $_POST["meta_{$this->prefix}fields_meta_box_nonce"], "meta_{$this->prefix}_fields_save_meta_box_data" ) )
-			return;
-
-		if ( ! current_user_can( 'edit_post', $post_id ) )
-			return;
-
-		$status = sanitize_text_field( $_POST["{$this->prefix}status"] );
-		$change_date = sanitize_text_field( $_POST["{$this->prefix}change_date"] );
-
-		if(! $status || ! $change_date) {
-			$this->query->delete_by_post_id($post_id);
 		}
 
-		$row = $this->query->create_row([
-			'post_id' => $post_id,
-			'status' => $status,
-			'change_date' => $change_date
-		]);
+		if ( ! wp_verify_nonce( $_POST[ "meta_{$this->prefix}fields_meta_box_nonce" ], "meta_{$this->prefix}_fields_save_meta_box_data" ) ) {
+			return;
+		}
 
-		$this->query->create_or_update($row);
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
+		$status      = sanitize_text_field( $_POST[ "{$this->prefix}status" ] );
+		$change_date = sanitize_text_field( $_POST[ "{$this->prefix}change_date" ] );
+
+		if ( ! $status || ! $change_date ) {
+			$this->query->delete_by_post_id( $post_id );
+		}
+
+		$row = $this->query->create_row(
+			[
+				'post_id'     => $post_id,
+				'status'      => $status,
+				'change_date' => $change_date,
+			]
+			);
+
+		$this->query->create_or_update( $row );
 	}
 
-	public function maybe_delete_schedule($post_id, WP_Post $new_post, WP_Post $old_post) {
-		if($new_post->post_status === $old_post->post_status) {
+	public function maybe_delete_schedule( $post_id, WP_Post $new_post, WP_Post $old_post ) {
+		if ( $new_post->post_status === $old_post->post_status ) {
 			return;
 		}
-		$this->query->delete_by_post_id($post_id);
+		$this->query->delete_by_post_id( $post_id );
 	}
 }
