@@ -6,7 +6,7 @@ define( 'ROCKET_LAUNCHER_PLUGIN_ROOT', dirname( dirname( __DIR__ ) ) . DIRECTORY
 define( 'ROCKET_LAUNCHER_TESTS_FIXTURES_DIR', dirname( __DIR__ ) . '/Fixtures' );
 define( 'ROCKET_LAUNCHER_TESTS_DIR', __DIR__ );
 define( 'ROCKET_LAUNCHER_IS_TESTING', true );
-
+define('MINUTE_IN_SECONDS', 60);
 define( 'OBJECT', 'OBJECT' );
 /**
  * The original files need to loaded into memory before we mock them with Patchwork. Add files here before the unit

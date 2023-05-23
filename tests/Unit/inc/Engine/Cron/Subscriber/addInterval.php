@@ -9,6 +9,8 @@ use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
 
 
 use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use Brain\Monkey\Filters;
+use Brain\Monkey\Functions;
 
 /**
  * @covers \CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::add_interval
@@ -55,7 +57,8 @@ class Test_addInterval extends TestCase {
      */
     public function testShouldReturnAsExpected( $config, $expected )
     {
+		Functions\when('esc_html__')->returnArg();
+		Filters\expectApplied("prefixprocess_scheduled_posts_cron_interval")->with(MINUTE_IN_SECONDS)->andReturn($config['interval']);
         $this->assertSame($expected, $this->subscriber->add_interval($config['schedules']));
-
     }
 }
