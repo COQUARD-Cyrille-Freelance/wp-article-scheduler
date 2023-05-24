@@ -9,6 +9,7 @@ use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
 
 
 use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use Brain\Monkey\Functions;
 
 /**
  * @covers \CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::schedule_cron
@@ -55,7 +56,13 @@ class Test_scheduleCron extends TestCase {
      */
     public function testShouldDoAsExpected( $config )
     {
-        $this->subscriber->schedule_cron();
-
+		Functions\expect('wp_next_scheduled')->with("prefixprocess_scheduled_posts")->andReturn($config['has_cron']);
+		if(! $config['has_cron']) {
+			Functions\expect('wp_schedule_event')->with(Mockery::on(function ($data) {
+				return strtotime('now') <= $data && strtotime('now + 1 hour') >= $data;
+			}), "{$this->prefix}process_scheduled_posts", "{$this->prefix}process_scheduled_posts");
+		}
+		$this->subscriber->schedule_cron();
+		$this->assertTrue(true);
     }
 }
