@@ -55,7 +55,10 @@ class Test_processScheduledPosts extends TestCase {
      */
     public function testShouldDoAsExpected( $config )
     {
+		$this->query->expects(self::once())->method('query')->willReturn($config['rows']);
+		foreach ($config['rows'] as $row) {
+			$this->queue->expects()->add_scheduled_post( $row->post_id, $row->status, $row->change_date );
+		}
         $this->subscriber->process_scheduled_posts();
-
     }
 }
