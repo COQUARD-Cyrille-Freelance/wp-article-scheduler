@@ -118,13 +118,18 @@ class Subscriber implements SubscriberInterface {
 				],
 			]
 			);
+
+		if(! $rows) {
+			return;
+		}
+
 		foreach ( $rows as $row ) {
 			$this->queue->add_scheduled_post( $row->post_id, $row->status, $row->change_date );
 		}
 	}
 
 	public function process_scheduled( $post_id, $status, $change_date ) {
-		if($change_date > now()) {
+		if($change_date > time()) {
 			return;
 		}
 
