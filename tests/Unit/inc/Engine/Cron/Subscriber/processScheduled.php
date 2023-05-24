@@ -9,6 +9,7 @@ use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
 
 
 use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use Brain\Monkey\Functions;
 
 /**
  * @covers \CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::process_scheduled
@@ -53,9 +54,29 @@ class Test_processScheduled extends TestCase {
     /**
      * @dataProvider configTestData
      */
-    public function testShouldDoAsExpected( $config )
+    public function testShouldDoAsExpected( $config, $expected )
     {
+		$this->configure_delete_post($config, $expected);
+		$this->configure_update_post($config, $expected);
         $this->subscriber->process_scheduled($config['post_id'], $config['status'], $config['change_date']);
-
     }
+
+	protected function configure_delete_post($config, $expected) {
+		if( $config['date_superior']) {
+			Functions\expect('get_post')->never();
+			return;
+		}
+		Functions\expect('get_post')->with($expected['post_id'])->andReturn($config['post']);
+		$this->query->expects(self::once())->method('delete_by_post_id')->with($expected['post_id']);
+	}
+
+	protected function configure_update_post($config, $expected) {
+		if( $config['date_superior'] || $config['invalid_post']) {
+			Functions\expect('wp_update_post')->never();
+			return;
+		}
+		Functions\expect('wp_update_post')->with(Mockery::on(function ($data) use ($expected) {
+			return $data instanceof \WP_Post && $data->post_status == $expected['post']->post_status &&$data->ID == $expected['post']->ID;
+		}));
+	}
 }
