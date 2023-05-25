@@ -33,3 +33,23 @@ Cypress.Commands.add('fetchLastPost', () => {
     }
     return list.pop();
 })
+
+Cypress.Commands.add('addArticleSchedule', (status, date) => {
+    const table = '';
+    const post = cy.fetchLastPost();
+    const data = JSON.encode({
+        post_id: post.ID,
+        status,
+        change_date: date
+    });
+    cy.wp(`insert-row ${table} "${data}"`);
+})
+
+Cypress.Commands.add('hasArticleSchedule', (status) => {
+    const post = cy.fetchLastPost();
+    const data = cy.wp("export-table");
+    if(data.length === 0) {
+        return false;
+    }
+    return data.filter((d) => d.status === status && d.post_id === post.ID).length !== 0;
+})

@@ -36,16 +36,18 @@ class Subscriber implements SubscriberInterface {
      */
     public function get_subscribed_events() {
         return [
-			'init' => 'register_export_data_table_command'
+			'init' => 'register_commands'
         ];
     }
 
-	public function register_export_data_table_command() {
+	public function register_commands() {
 		if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 			return;
 		}
 
 		WP_CLI::add_command( 'export-table', [$this, 'export_data_table_command'] );
+		WP_CLI::add_command( 'insert-row', [$this, 'insert_row_table_command'] );
+		WP_CLI::add_command( 'clean-table', [$this, 'clear_table_command'] );
 	}
 
 	public function export_data_table_command($args, $assoc_args) {
