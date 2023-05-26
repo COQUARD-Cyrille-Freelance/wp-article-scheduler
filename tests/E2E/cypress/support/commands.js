@@ -23,33 +23,41 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-import '@bigbite/wp-cypress/lib/cypress-support';
+import '@coquardcyr/wp-cypress/lib/cypress-support';
 import "@testing-library/cypress/add-commands";
 
 Cypress.Commands.add('fetchLastPost', () => {
-    const list = cy.wp('post list --format=json')
-    if(list.length === 0) {
-        return {};
-    }
-    return list.pop();
+    return cy.wp('post list --format=json').then(data => {
+        const list = JSON.parse(data.stdout);
+        if(list.length === 0) {
+            return {};
+        }
+        return list.pop();
+    })
+
 })
 
 Cypress.Commands.add('addArticleSchedule', (status, date) => {
-    const table = '';
-    const post = cy.fetchLastPost();
-    const data = JSON.encode({
-        post_id: post.ID,
-        status,
-        change_date: date
-    });
-    cy.wp(`insert-row ${table} "${data}"`);
+    const table = 'article_schedules';
+    cy.fetchLastPost().then(post => {
+        const data = JSON.stringify({
+            post_id: post.ID,
+            status,
+            change_date: date
+        }).replaceAll('"','\\"');
+        cy.wp(`insert-row ${table} '${data}'`);
+    })
 })
 
 Cypress.Commands.add('hasArticleSchedule', (status) => {
-    const post = cy.fetchLastPost();
-    const data = cy.wp("export-table");
-    if(data.length === 0) {
-        return false;
-    }
-    return data.filter((d) => d.status === status && d.post_id === post.ID).length !== 0;
+    return cy.fetchLastPost().then(post => {
+        return cy.wp("export-table article_schedules").then(data => {
+            const list = JSON.parse(data.stdout);
+
+            if(list.length === 0) {
+                return false;
+            }
+            return list.filter((d) => d.status === status && d.post_id === post.ID).length !== 0;
+        });
+    })
 })

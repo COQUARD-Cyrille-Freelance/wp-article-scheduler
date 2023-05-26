@@ -1,6 +1,5 @@
 const { defineConfig } = require("cypress");
-const wpCypressPlugin = require('@bigbite/wp-cypress/lib/cypress-plugin');
-const cucumber = require('cypress-cucumber-preprocessor').default
+const wpCypressPlugin = require('@coquardcyr/wp-cypress/lib/cypress-plugin');
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const addCucumberPreprocessorPlugin =
     require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
@@ -24,7 +23,8 @@ module.exports = defineConfig({
   },
   wp: {
     version: ["5.7"],
-    plugins: ["../../"],
+    plugins: ["../../", "end_to_end_helper/"],
+
     phpVersion: "8.0",
     dbPort: 3304,
     port: 8888

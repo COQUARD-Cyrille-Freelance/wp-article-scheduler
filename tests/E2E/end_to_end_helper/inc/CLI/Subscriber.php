@@ -80,13 +80,13 @@ class Subscriber implements SubscriberInterface {
 
 		$table = array_shift($args);
 		$data = array_shift($args);
-		$data = json_encode($data);
+		$data = json_decode($data, true);
 
 		if(! $data) {
 			WP_CLI::error( 'You should pass a valid data JSON' );
 		}
 
-		$this->wpdb->insert($table, $data);
+		$this->wpdb->insert($this->wpdb->prefix . $table, $data);
 
 		$id = $this->wpdb->insert_id;
 

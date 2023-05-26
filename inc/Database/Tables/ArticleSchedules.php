@@ -22,14 +22,14 @@ class ArticleSchedules extends Table {
      *
      * @var string
      */
-    protected $name = 'wpr_rocket_cache';
+    protected $name = 'article_schedules';
 
     /**
      * Database version key (saved in _options or _sitemeta)
      *
      * @var string
      */
-    protected $db_version_key = 'wpr_rocket_cache_version';
+    protected $db_version_key = 'article_schedules_version';
 
     /**
      * Database version
