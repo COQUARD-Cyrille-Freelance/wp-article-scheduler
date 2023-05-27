@@ -1,4 +1,4 @@
-const {Given, When, Then} = require("cucumber");
+const {Given, When, Then} = require("@badeball/cypress-cucumber-preprocessor");
 
 const runSeederDependingOnTime = (time, past, future) => {
     if(time === 'yesterday') {
@@ -22,9 +22,19 @@ Given(/^I got a (.*) post scheduled to (.*) for (.*)$/, function (type, action, 
         }
 });
 When(/^I run the queue$/, function () {
-    cy.wp('wp action-scheduler run --group=coquardcyr_wp_article_scheduler')
+    cy.wp('cron event run coquardcyr_wp_article_scheduler_process_scheduled_posts')
+    cy.wp('action-scheduler run')
 });
-Then(/^I should have a post (.*)$/, function (type) {
-    const post = cy.fetchLastPost()
-    expect(post.post_status).eq(type)
+Then("I should have a post {word}", function (type) {
+    cy.fetchLastPost().then(post => {
+        expect(post.post_status).eq(type)
+    })
+});
+Then(/^I should (.*) a post scheduled to unpublish$/, function (existence, status) {
+
+    if('have' === existence.trim()) {
+        cy.hasArticleSchedule('draft').should('be.true')
+        return
+    }
+    cy.hasArticleSchedule('draft').should('not.be.true')
 });

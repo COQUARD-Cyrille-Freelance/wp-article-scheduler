@@ -73,14 +73,14 @@ class ArticleSchedules extends Query {
 	public function create_or_update( ScheduleRow $row) {
 		$old_row = $this->get_by_post_id($row->post_id);
 		if(! $old_row) {
-			return $this->add_item((array) $row);
+			return $this->add_item($row->to_array());
 		}
-		$data = array_merge((array) $old_row, (array) $row);
+		$data = array_merge($old_row->to_array(), $row->to_array());
 		return $this->update_item($old_row->id, $data);
 	}
 
 	public function delete_by_post_id(int $post_id) {
-		$row = $this->delete_by_post_id($post_id);
+		$row = $this->get_by_post_id($post_id);
 		if(! $row) {
 			return;
 		}

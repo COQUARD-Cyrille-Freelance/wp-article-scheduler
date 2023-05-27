@@ -7,5 +7,5 @@ Feature: Process scheduled posts
 
     Examples:
       | type | result_type | action | schedule |existence |
-      |    published |   draft |   unpublish | yesterday  | have  |
-      |    published |   draft |   unpublish | tomorrow  | have  |
+      |    publish |   draft |   unpublish | yesterday  | not have  |
+      |    publish |   publish |   unpublish | tomorrow  | have  |
