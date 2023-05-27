@@ -1,8 +1,8 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\E2E\cypress\seeds;
+use WP_Cypress\Seeder\Seeder;
 
-class PostScheduledPublishFutureSeeder extends \WP_Cypress\Seeder\Seeder {
+class PostScheduledPublishFutureSeeder extends Seeder {
 
 	/**
 	 * @var PostFixture
@@ -16,7 +16,8 @@ class PostScheduledPublishFutureSeeder extends \WP_Cypress\Seeder\Seeder {
 
 	public function run() {
 		$this->post_fixture->schedule_future();
-		$this->post_fixture->is_scheduled_published();
+		$this->post_fixture->is_scheduled_draft();
+		$this->post_fixture->create();
 	}
 
 	public function clean() {

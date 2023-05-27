@@ -32,7 +32,7 @@ Cypress.Commands.add('fetchLastPost', () => {
         if(list.length === 0) {
             return {};
         }
-        return list.pop();
+        return list.reduce((a,b) => a.ID > b.ID ? a : b, {ID: 0});
     })
 
 })
@@ -53,11 +53,10 @@ Cypress.Commands.add('hasArticleSchedule', (status) => {
     return cy.fetchLastPost().then(post => {
         return cy.wp("export-table article_schedules").then(data => {
             const list = JSON.parse(data.stdout);
-
             if(list.length === 0) {
                 return false;
             }
-            return list.filter((d) => d.status === status && d.post_id === post.ID).length !== 0;
+            return list.filter((d) => d.status === status && parseInt(d.post_id) === parseInt(post.ID)).length !== 0;
         });
     })
 })

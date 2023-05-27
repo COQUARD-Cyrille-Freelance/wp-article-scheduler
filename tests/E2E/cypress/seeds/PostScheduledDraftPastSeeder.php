@@ -1,7 +1,5 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\E2E\cypress\seeds;
-
 class PostScheduledDraftPastSeeder extends \WP_Cypress\Seeder\Seeder {
 
 	/**
@@ -17,6 +15,7 @@ class PostScheduledDraftPastSeeder extends \WP_Cypress\Seeder\Seeder {
 	public function run() {
 		$this->post_fixture->schedule_past();
 		$this->post_fixture->is_scheduled_draft();
+		$this->post_fixture->create();
 	}
 
 	public function clean() {

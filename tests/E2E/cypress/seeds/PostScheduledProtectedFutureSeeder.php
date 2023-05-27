@@ -1,7 +1,5 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\E2E\cypress\seeds;
-
 class PostScheduledProtectedFutureSeeder extends \WP_Cypress\Seeder\Seeder {
 
 	/**
@@ -17,6 +15,7 @@ class PostScheduledProtectedFutureSeeder extends \WP_Cypress\Seeder\Seeder {
 	public function run() {
 		$this->post_fixture->schedule_future();
 		$this->post_fixture->is_scheduled_protected();
+		$this->post_fixture->create();
 	}
 
 	public function clean() {

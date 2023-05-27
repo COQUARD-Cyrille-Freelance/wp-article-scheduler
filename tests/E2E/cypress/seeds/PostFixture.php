@@ -1,11 +1,8 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\E2E\cypress\seeds;
-
 use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
 use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
 use WP_Cypress\Fixtures\Post;
-use function WP_Cypress\Utils\now;
 
 class PostFixture extends Post
 {
@@ -30,7 +27,7 @@ class PostFixture extends Post
 		parent::__construct();
 		$container = apply_filters('coquardcyr_wp_article_scheduler_container', null);
 		$this->queue = $container->get(Queue::class);
-		$this->queue = $container->get(ArticleSchedules::class);
+		$this->query = $container->get(ArticleSchedules::class);
 	}
 
     /**
@@ -59,11 +56,11 @@ class PostFixture extends Post
     }
 
 	public function schedule_future() {
-		$this->change_date = current_time('timestamp') + 9999;
+		$this->change_date = date('Y-m-d H:i:s', strtotime('tomorrow') );
 	}
 
 	public function schedule_past() {
-		$this->change_date = current_time('timestamp') - 9999;
+		$this->change_date = date('Y-m-d H:i:s', strtotime('yesterday'));
 	}
 
 	public function is_scheduled_draft() {
@@ -90,7 +87,6 @@ class PostFixture extends Post
 		if(! $this->change_date || ! $this->status) {
 			return;
 		}
-
 		$row = $this->query->create_row([
 			'post_id' => $post_id,
 			'status'  => $this->status,
@@ -98,6 +94,5 @@ class PostFixture extends Post
 		]);
 
 		$this->query->create_or_update($row);
-		$this->queue->add_scheduled_post($post_id, $this->status, $this->change_date);
 	}
 }
