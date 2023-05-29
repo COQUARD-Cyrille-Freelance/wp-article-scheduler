@@ -1,17 +1,17 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Integration;
+namespace CoquardcyrArticleScheduler\Tests\Integration;
 
-use CoquardcyrWpArticleScheduler\Database\Tables\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Dependencies\BerlinDB\Database\Query;
-use CoquardcyrWpArticleScheduler\Dependencies\BerlinDB\Database\Row;
-use CoquardcyrWpArticleScheduler\Dependencies\BerlinDB\Database\Table;
+use CoquardcyrArticleScheduler\Database\Tables\ArticleSchedules;
+use CoquardcyrArticleScheduler\Dependencies\BerlinDB\Database\Query;
+use CoquardcyrArticleScheduler\Dependencies\BerlinDB\Database\Row;
+use CoquardcyrArticleScheduler\Dependencies\BerlinDB\Database\Table;
 use ReflectionClass;
 
 trait DBTrait {
 
 	protected static $tables = [
-		ArticleSchedules::class => \CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules::class,
+		ArticleSchedules::class => \CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules::class,
 	];
 
 	public function is_found(Row $data, array $hidden = []): bool {
@@ -50,7 +50,7 @@ trait DBTrait {
 	 * @return Table[]
 	 */
 	protected static function getTables(): array {
-		$container             = apply_filters( 'coquardcyr_wp_article_scheduler_container', null );
+		$container             = apply_filters( 'coquardcyr_article_scheduler_container', null );
 		$output = [];
 		foreach (self::$tables as $table => $query) {
 			$table = $container->get($table);
@@ -64,7 +64,7 @@ trait DBTrait {
 	}
 
 	protected function find_right_query(Row $row): ?Query {
-		$container             = apply_filters( 'coquardcyr_wp_article_scheduler_container', null );
+		$container             = apply_filters( 'coquardcyr_article_scheduler_container', null );
 		foreach (self::$tables as $query) {
 			$reflection = new ReflectionClass($query);
 			$property = $reflection->getProperty('item_shape');

@@ -1,8 +1,8 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler;
+namespace CoquardcyrArticleScheduler;
 
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\HasUninstallerServiceProviderInterface;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\HasUninstallerServiceProviderInterface;
 
 class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider implements HasUninstallerServiceProviderInterface {
 
@@ -13,7 +13,7 @@ class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider
 	 */
 	public function get_admin_subscribers(): array {
 		return [
-			\CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::class,
+			\CoquardcyrArticleScheduler\Engine\Admin\Subscriber::class,
 		];
 	}
 
@@ -24,13 +24,13 @@ class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider
 	 */
 	public function get_common_subscribers(): array {
 		return [
-			\CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::class,
+			\CoquardcyrArticleScheduler\Engine\Cron\Subscriber::class,
 		];
 	}
 
 	public function get_uninstallers(): array {
 		return [
-			\CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::class,
+			\CoquardcyrArticleScheduler\Engine\Admin\Subscriber::class,
 		];
 	}
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Database\Queries;
+namespace CoquardcyrArticleScheduler\Database\Queries;
 
-use CoquardcyrWpArticleScheduler\Database\Rows\ArticleSchedules as ScheduleRow;
-use CoquardcyrWpArticleScheduler\Dependencies\BerlinDB\Database\Query;
-use CoquardcyrWpArticleScheduler\Database\Rows\ArticleSchedules as Row;
-use CoquardcyrWpArticleScheduler\Database\Schemas\ArticleSchedules as Schema;
+use CoquardcyrArticleScheduler\Database\Rows\ArticleSchedules as ScheduleRow;
+use CoquardcyrArticleScheduler\Dependencies\BerlinDB\Database\Query;
+use CoquardcyrArticleScheduler\Database\Rows\ArticleSchedules as Row;
+use CoquardcyrArticleScheduler\Database\Schemas\ArticleSchedules as Schema;
 
 class ArticleSchedules extends Query {
 

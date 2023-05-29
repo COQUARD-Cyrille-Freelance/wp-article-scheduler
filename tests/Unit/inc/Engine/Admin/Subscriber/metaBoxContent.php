@@ -1,18 +1,18 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Unit\inc\Engine\Admin\Subscriber;
+namespace CoquardcyrArticleScheduler\Tests\Unit\inc\Engine\Admin\Subscriber;
 
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadBudAssets\Assets;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadBudAssets\Assets;
 use Mockery;
-use CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber;
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Engine\Admin\Subscriber;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
 
 
-use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use CoquardcyrArticleScheduler\Tests\Unit\TestCase;
 use Brain\Monkey\Functions;
 use Brain\Monkey\Actions;
 /**
- * @covers \CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::meta_box_content
+ * @covers \CoquardcyrArticleScheduler\Engine\Admin\Subscriber::meta_box_content
  */
 class Test_metaBoxContent extends TestCase {
 

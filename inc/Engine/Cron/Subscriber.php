@@ -1,11 +1,10 @@
 <?php
-namespace CoquardcyrWpArticleScheduler\Engine\Cron;
+namespace CoquardcyrArticleScheduler\Engine\Cron;
 
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadCore\EventManagement\SubscriberInterface;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\UninstallerInterface;
-use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
-use function WP_Cypress\Utils\now;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadCore\EventManagement\SubscriberInterface;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\UninstallerInterface;
+use CoquardcyrArticleScheduler\Engine\Queue\Queue;
 
 class Subscriber implements SubscriberInterface, UninstallerInterface {
 
@@ -90,7 +89,7 @@ class Subscriber implements SubscriberInterface, UninstallerInterface {
 
 		$schedules[ "{$this->prefix}process_scheduled_posts" ] = [
 			'interval' => $interval,
-			'display'  => esc_html__( "{$this->plugin_name} process scheduled posts", 'coquardcyrwparticlescheduler' ),
+			'display'  => esc_html__( "{$this->plugin_name} process scheduled posts", 'coquardcyrarticlescheduler' ),
 		];
 
 		return $schedules;

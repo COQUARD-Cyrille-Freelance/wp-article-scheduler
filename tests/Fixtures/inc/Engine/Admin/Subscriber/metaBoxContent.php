@@ -1,6 +1,6 @@
 <?php
 
-use CoquardcyrWpArticleScheduler\Database\Rows\ArticleSchedules;
+use CoquardcyrArticleScheduler\Database\Rows\ArticleSchedules;
 
 return [
     'shouldRenderWithParameters' => [

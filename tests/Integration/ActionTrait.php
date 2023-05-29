@@ -1,6 +1,6 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Integration;
+namespace CoquardcyrArticleScheduler\Tests\Integration;
 
 trait ActionTrait {
 

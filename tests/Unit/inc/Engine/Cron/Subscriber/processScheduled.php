@@ -1,18 +1,18 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Unit\inc\Engine\Cron\Subscriber;
+namespace CoquardcyrArticleScheduler\Tests\Unit\inc\Engine\Cron\Subscriber;
 
 use Mockery;
-use CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber;
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
+use CoquardcyrArticleScheduler\Engine\Cron\Subscriber;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Engine\Queue\Queue;
 
 
-use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use CoquardcyrArticleScheduler\Tests\Unit\TestCase;
 use Brain\Monkey\Functions;
 
 /**
- * @covers \CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::process_scheduled
+ * @covers \CoquardcyrArticleScheduler\Engine\Cron\Subscriber::process_scheduled
  */
 class Test_processScheduled extends TestCase {
 

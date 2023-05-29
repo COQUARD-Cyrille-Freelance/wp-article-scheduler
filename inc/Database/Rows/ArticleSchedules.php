@@ -1,8 +1,8 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Database\Rows;
+namespace CoquardcyrArticleScheduler\Database\Rows;
 
-use CoquardcyrWpArticleScheduler\Dependencies\BerlinDB\Database\Row;
+use CoquardcyrArticleScheduler\Dependencies\BerlinDB\Database\Row;
 
 class ArticleSchedules extends Row {
 

@@ -41,12 +41,12 @@
     </rule>
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="coquardcyrwparticlescheduler" />
+            <property name="text_domain" type="array" value="coquardcyrarticlescheduler" />
         </properties>
     </rule>
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
-            <property name="prefixes" type="array" value="coquardcyr_wp_article_scheduler_,CoquardcyrWpArticleScheduler" />
+            <property name="prefixes" type="array" value="coquardcyr_article_scheduler_,CoquardcyrArticleScheduler" />
         </properties>
     </rule>
     <rule ref="WordPress.Files.FileName">

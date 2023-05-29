@@ -1,7 +1,7 @@
 <?php
 
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Engine\Queue\Queue;
 use WP_Cypress\Fixtures\Post;
 
 class PostFixture extends Post
@@ -25,7 +25,7 @@ class PostFixture extends Post
 
 	public function __construct() {
 		parent::__construct();
-		$container = apply_filters('coquardcyr_wp_article_scheduler_container', null);
+		$container = apply_filters('coquardcyr_article_scheduler_container', null);
 		$this->queue = $container->get(Queue::class);
 		$this->query = $container->get(ArticleSchedules::class);
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Integration;
+namespace CoquardcyrArticleScheduler\Tests\Integration;
 use ReflectionObject;
 use WPMedia\PHPUnit\Integration\TestCase as BaseTestCase;
 

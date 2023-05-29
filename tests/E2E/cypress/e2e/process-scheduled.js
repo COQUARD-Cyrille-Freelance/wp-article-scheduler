@@ -22,7 +22,7 @@ Given(/^I got a (.*) post scheduled to (.*) for (.*)$/, function (type, action, 
         }
 });
 When(/^I run the queue$/, function () {
-    cy.wp('cron event run coquardcyr_wp_article_scheduler_process_scheduled_posts')
+    cy.wp('cron event run coquardcyr_article_scheduler_process_scheduled_posts')
     cy.wp('action-scheduler run')
 });
 Then("I should have a post {word}", function (type) {

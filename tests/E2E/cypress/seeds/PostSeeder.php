@@ -1,6 +1,6 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\E2E\cypress\seeds;
+namespace CoquardcyrArticleScheduler\Tests\E2E\cypress\seeds;
 
 use WP_Cypress\Seeder\Seeder;
 

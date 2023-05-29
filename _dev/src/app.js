@@ -4,11 +4,11 @@ jQuery(function () {
 
 
 
-    const prefix = coquardcyrwparticleschedulerapp_data.prefix;
+    const prefix = coquardcyrarticleschedulerapp_data.prefix;
 
-    const statuses = coquardcyrwparticleschedulerapp_data.statuses;
+    const statuses = coquardcyrarticleschedulerapp_data.statuses;
 
-    const initial = coquardcyrwparticleschedulerapp_data.initial;
+    const initial = coquardcyrarticleschedulerapp_data.initial;
 
     const root = document.getElementById(`${prefix}app`);
 

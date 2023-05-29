@@ -1,7 +1,7 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Integration;
-use CoquardcyrWpArticleScheduler\Tests\Integration\TestCase as BaseTestCase;
+namespace CoquardcyrArticleScheduler\Tests\Integration;
+use CoquardcyrArticleScheduler\Tests\Integration\TestCase as BaseTestCase;
 
 class AdminTestCase extends BaseTestCase
 {

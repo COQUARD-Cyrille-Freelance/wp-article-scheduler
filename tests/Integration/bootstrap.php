@@ -1,5 +1,6 @@
 <?php
-namespace CoquardcyrWpArticleScheduler\Tests\Integration;
+namespace CoquardcyrArticleScheduler\Tests\Integration;
+use WPMedia\PHPUnit\BootstrapManager;
 
 define( 'ROCKET_LAUNCHER_PLUGIN_ROOT', dirname( dirname( __DIR__ ) ) . DIRECTORY_SEPARATOR );
 define( 'ROCKET_LAUNCHER_TESTS_FIXTURES_DIR', dirname( __DIR__ ) . '/Fixtures' );
@@ -11,6 +12,6 @@ tests_add_filter(
     'muplugins_loaded',
     function() {
         // Load the plugin.
-        require ROCKET_LAUNCHER_PLUGIN_ROOT . '/rocket-launcher.php';
+        require ROCKET_LAUNCHER_PLUGIN_ROOT . '/coquardcyr-wp-article-scheduler.php';
     }
 );

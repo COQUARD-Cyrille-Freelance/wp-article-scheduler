@@ -1,11 +1,11 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Integration\inc\Engine\Admin\Subscriber;
+namespace CoquardcyrArticleScheduler\Tests\Integration\inc\Engine\Admin\Subscriber;
 
-use CoquardcyrWpArticleScheduler\Tests\Integration\TestCase;
+use CoquardcyrArticleScheduler\Tests\Integration\TestCase;
 
 /**
- * @covers \CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::save_meta
+ * @covers \CoquardcyrArticleScheduler\Engine\Admin\Subscriber::save_meta
  */
 class Test_saveMeta extends TestCase {
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Unit\inc\Engine\Admin\Subscriber;
+namespace CoquardcyrArticleScheduler\Tests\Unit\inc\Engine\Admin\Subscriber;
 
 use Mockery;
-use CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber;
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Engine\Admin\Subscriber;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
 
 
-use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use CoquardcyrArticleScheduler\Tests\Unit\TestCase;
 use Brain\Monkey\Functions;
 /**
- * @covers \CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::save_meta
+ * @covers \CoquardcyrArticleScheduler\Engine\Admin\Subscriber::save_meta
  */
 class Test_saveMeta extends TestCase {
 

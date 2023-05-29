@@ -69,12 +69,12 @@
             "inc/classes"
         ],
         "psr-4": {
-            "CoquardcyrWpArticleScheduler\\": "inc/"
+            "CoquardcyrArticleScheduler\\": "inc/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CoquardcyrWpArticleScheduler\\Tests\\": "tests/"
+            "CoquardcyrArticleScheduler\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -87,10 +87,10 @@
             ]
         },
         "mozart": {
-            "dep_namespace": "CoquardcyrWpArticleScheduler\\Dependencies\\",
+            "dep_namespace": "CoquardcyrArticleScheduler\\Dependencies\\",
             "dep_directory": "/inc/Dependencies/",
             "classmap_directory": "/inc/classes/dependencies/",
-            "classmap_prefix": "CoquardcyrWpArticleScheduler",
+            "classmap_prefix": "CoquardcyrArticleScheduler",
             "packages": [
                 "league/container",
                 "wp-launchpad/core",

@@ -3,8 +3,8 @@
 defined( 'ABSPATH' ) || exit;
 
 return [
-    \CoquardcyrWpArticleScheduler\Dependencies\LaunchpadFront\ServiceProvider::class,
-	\CoquardcyrWpArticleScheduler\Database\ServiceProvider::class,
-	\CoquardcyrWpArticleScheduler\Dependencies\LaunchpadRenderer\ServiceProvider::class,
-	\CoquardcyrWpArticleScheduler\ServiceProvider::class,
+    \CoquardcyrArticleScheduler\Dependencies\LaunchpadFront\ServiceProvider::class,
+	\CoquardcyrArticleScheduler\Database\ServiceProvider::class,
+	\CoquardcyrArticleScheduler\Dependencies\LaunchpadRenderer\ServiceProvider::class,
+	\CoquardcyrArticleScheduler\ServiceProvider::class,
 ];

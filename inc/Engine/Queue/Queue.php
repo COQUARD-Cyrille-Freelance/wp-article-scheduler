@@ -1,8 +1,8 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Engine\Queue;
+namespace CoquardcyrArticleScheduler\Engine\Queue;
 
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadActionScheduler\Queue\AbstractASQueue;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadActionScheduler\Queue\AbstractASQueue;
 
 class Queue extends AbstractASQueue
 {

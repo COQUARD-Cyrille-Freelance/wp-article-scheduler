@@ -2,8 +2,8 @@
 
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\Uninstall;
-use CoquardcyrWpArticleScheduler\Dependencies\League\Container\Container;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\Uninstall;
+use CoquardcyrArticleScheduler\Dependencies\League\Container\Container;
 
 $plugin_root_dir = dirname( __FILE__ );
 

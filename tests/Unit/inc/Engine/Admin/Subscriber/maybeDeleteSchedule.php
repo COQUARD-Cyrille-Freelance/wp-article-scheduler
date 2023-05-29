@@ -1,16 +1,16 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Unit\inc\Engine\Admin\Subscriber;
+namespace CoquardcyrArticleScheduler\Tests\Unit\inc\Engine\Admin\Subscriber;
 
 use Mockery;
-use CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber;
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Engine\Admin\Subscriber;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
 
 
-use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use CoquardcyrArticleScheduler\Tests\Unit\TestCase;
 
 /**
- * @covers \CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::maybe_delete_schedule
+ * @covers \CoquardcyrArticleScheduler\Engine\Admin\Subscriber::maybe_delete_schedule
  */
 class Test_maybeDeleteSchedule extends TestCase {
 

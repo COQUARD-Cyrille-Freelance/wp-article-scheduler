@@ -1,9 +1,9 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Database;
+namespace CoquardcyrArticleScheduler\Database;
 
-use CoquardcyrWpArticleScheduler\Database\Tables\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\UninstallerInterface;
+use CoquardcyrArticleScheduler\Database\Tables\ArticleSchedules;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\UninstallerInterface;
 
 class Uninstaller implements UninstallerInterface {
 

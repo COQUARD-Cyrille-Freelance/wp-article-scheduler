@@ -1,8 +1,8 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Database\Schemas;
+namespace CoquardcyrArticleScheduler\Database\Schemas;
 
-use CoquardcyrWpArticleScheduler\Dependencies\BerlinDB\Database\Schema;
+use CoquardcyrArticleScheduler\Dependencies\BerlinDB\Database\Schema;
 
 class ArticleSchedules extends Schema {
 

@@ -1,10 +1,10 @@
 <?php
 
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadRenderer\Cache\WPFilesystemCache;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadRenderer\Cache\WPFilesystemCache;
 
 defined( 'ABSPATH' ) || exit;
 
-$plugin_name = 'coquardcyr wp article scheduler';
+$plugin_name = 'coquardcyr article scheduler';
 
 $plugin_launcher_path = dirname( __DIR__ ) . '/';
 
@@ -17,12 +17,12 @@ return [
 	'plugin_launcher_file'         => $plugin_launcher_file,
 	'plugin_launcher_path'         => $plugin_launcher_path,
 	'plugin_inc_path'              => realpath( $plugin_launcher_path . 'inc/' ) . '/',
-	'prefix'                       => 'coquardcyr_wp_article_scheduler_',
-	'translation_key'              => 'coquardcyrwparticlescheduler',
+	'prefix'                       => 'coquardcyr_article_scheduler_',
+	'translation_key'              => 'coquardcyrarticlescheduler',
 	'is_mu_plugin'                 => false,
-	'action_scheduler_queue_group' => 'coquardcyr_wp_article_scheduler',
+	'action_scheduler_queue_group' => 'coquardcyr_article_scheduler',
 	'template_path'                => $plugin_launcher_path . '/templates/',
-	'assets_url'                  => plugins_url('assets/', $plugin_launcher_file),
+	'assets_url'                  => plugins_url('assets/', $plugin_launcher_path . '/' . basename( $plugin_launcher_path ) . '.php'),
 	'root_directory'               => WP_CONTENT_DIR . '/cache/',
 	'renderer_cache_enabled'       => false,
 	'renderer_caching_solution'    => [ WPFilesystemCache::class ],

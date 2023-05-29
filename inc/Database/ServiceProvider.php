@@ -1,11 +1,11 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Database;
+namespace CoquardcyrArticleScheduler\Database;
 
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadCore\Container\AbstractServiceProvider;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\HasUninstallerServiceProviderInterface;
-use CoquardcyrWpArticleScheduler\Dependencies\League\Container\Definition\Definition;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadCore\Container\AbstractServiceProvider;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\HasUninstallerServiceProviderInterface;
+use CoquardcyrArticleScheduler\Dependencies\League\Container\Definition\Definition;
 
 /**
  * Service provider.

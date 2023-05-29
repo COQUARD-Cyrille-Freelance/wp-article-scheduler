@@ -1,19 +1,19 @@
 <?php
 
-namespace CoquardcyrWpArticleScheduler\Tests\Unit\inc\Engine\Cron\Subscriber;
+namespace CoquardcyrArticleScheduler\Tests\Unit\inc\Engine\Cron\Subscriber;
 
 use Mockery;
-use CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber;
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
+use CoquardcyrArticleScheduler\Engine\Cron\Subscriber;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Engine\Queue\Queue;
 
 
-use CoquardcyrWpArticleScheduler\Tests\Unit\TestCase;
+use CoquardcyrArticleScheduler\Tests\Unit\TestCase;
 use Brain\Monkey\Filters;
 use Brain\Monkey\Functions;
 
 /**
- * @covers \CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::add_interval
+ * @covers \CoquardcyrArticleScheduler\Engine\Cron\Subscriber::add_interval
  */
 class Test_addInterval extends TestCase {
 

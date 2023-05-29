@@ -1,10 +1,10 @@
 <?php
-namespace CoquardcyrWpArticleScheduler\Engine\Admin;
+namespace CoquardcyrArticleScheduler\Engine\Admin;
 
-use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadCore\EventManagement\SubscriberInterface;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadFront\UseAssets;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadFront\UseAssetsInterface;
+use CoquardcyrArticleScheduler\Database\Queries\ArticleSchedules;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadCore\EventManagement\SubscriberInterface;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadFront\UseAssets;
+use CoquardcyrArticleScheduler\Dependencies\LaunchpadFront\UseAssetsInterface;
 use WP_Post;
 
 class Subscriber implements SubscriberInterface, UseAssetsInterface {
@@ -66,7 +66,7 @@ class Subscriber implements SubscriberInterface, UseAssetsInterface {
 		 */
 		$screen = apply_filters( "{$this->prefix}metabox_screen", [ 'post', 'page' ] );
 
-		add_meta_box( "{$this->prefix}schedule", __( 'Schedule the post', 'coquardcyrwparticlescheduler' ), [ $this, 'meta_box_content' ], $screen, 'side', 'default' );
+		add_meta_box( "{$this->prefix}schedule", __( 'Schedule the post', 'coquardcyrarticlescheduler' ), [ $this, 'meta_box_content' ], $screen, 'side', 'default' );
 	}
 
 	public function meta_box_content( WP_Post $post ) {
@@ -118,7 +118,7 @@ class Subscriber implements SubscriberInterface, UseAssetsInterface {
 		$statuses = [
 			[
 				'key' => '',
-				'name' => __('Unselected', 'coquardcyrwparticlescheduler'),
+				'name' => __('Unselected', 'coquardcyrarticlescheduler'),
 			]
 		];
 
