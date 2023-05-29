@@ -2,6 +2,7 @@
 
 namespace CoquardcyrWpArticleScheduler\Tests\Unit\inc\Engine\Admin\Subscriber;
 
+use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadBudAssets\Assets;
 use Mockery;
 use CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber;
 use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
@@ -30,22 +31,33 @@ class Test_metaBoxContent extends TestCase {
      */
     protected $subscriber;
 
+	/**
+	 * @var Assets
+	 */
+	protected $assets;
+
     public function set_up() {
         parent::set_up();
         $this->query = $this->createMock(ArticleSchedules::class);
         $this->prefix = 'prefix';
+		$this->assets = Mockery::mock(Assets::class);
 
         $this->subscriber = new Subscriber($this->query, $this->prefix);
-    }
+        $this->subscriber->set_assets($this->assets);
+	}
 
     /**
      * @dataProvider configTestData
      */
     public function testShouldDoAsExpected( $config, $expected )
     {
+		Functions\when('wp_date')->justReturn('date');
+		Functions\when('__')->returnArg();
 		if($config['should_render']) {
 			Functions\expect('get_post_statuses')->andReturn($config['statuses']);
 			Actions\expectDone('prefixrender_template')->with($expected['template'], $expected['parameters']);
+			$this->assets->expects()->get_full_key($expected['key'])->andReturn($config['full_key']);
+			Functions\expect('wp_localize_script')->with($expected['full_key'], $expected['full_key_data'], $expected['js_data']);
 		} else {
 			Functions\expect('get_post_statuses')->never();
 			Actions\expectDone('prefixrender_template')->never();
