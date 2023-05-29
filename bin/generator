@@ -6,6 +6,7 @@ use LaunchpadCLI\AppBuilder;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 AppBuilder::init(__DIR__ . '/../', [
-    \LaunchpadBerlinDB\ServiceProvider::class,
-    \LaunchpadCLIInstaller\ServiceProvider::class,
+        \LaunchpadBuild\ServiceProvider::class,
+        \LaunchpadBerlinDB\ServiceProvider::class,
+        \LaunchpadCLIInstaller\ServiceProvider::class,
 ]);

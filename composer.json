@@ -54,13 +54,14 @@
         "wp-launchpad/action-scheduler": "^0.0",
         "wp-launchpad/autoresolver": "^0.0",
         "wp-launchpad/berlindb": "^1.0",
+        "wp-launchpad/build": "^0.0",
         "wp-launchpad/cli": "^1.0",
         "wp-launchpad/cli-installer": "^0.0",
         "wp-launchpad/core": "^0.0",
+        "wp-launchpad/front": "^0.0",
         "wp-launchpad/renderer": "^1.0",
         "wp-launchpad/take-off": "^1.0",
-        "wp-media/phpunit": "^3.0",
-        "wp-launchpad/front": "^0.0"
+        "wp-media/phpunit": "^3.0"
     },
     "autoload": {
         "classmap": [
