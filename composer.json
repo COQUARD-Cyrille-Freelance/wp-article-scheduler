@@ -32,18 +32,14 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "composer/installers": "^1.0 || ^2.0"
     },
     "require-dev": {
         "php": "^7 || ^8",
+        "berlindb/core": "^2.0",
         "brain/monkey": "^2.0",
         "coenjacobs/mozart": "^0.7",
-        "wp-launchpad/autoresolver": "^0.0",
-        "wp-launchpad/cli": "^1.0",
-        "wp-launchpad/cli-installer": "^0.0",
-        "wp-launchpad/core": "^0.0",
-        "wp-launchpad/take-off": "^1.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "league/container": "^3.3",
         "mnsami/composer-custom-directory-installer": "^2.0",
@@ -53,13 +49,18 @@
         "psr/container": "1.0.0",
         "roave/security-advisories": "dev-master",
         "szepeviktor/phpstan-wordpress": "^0.7.0",
-        "wp-coding-standards/wpcs": "^2",
-        "wp-media/phpunit": "^3.0",
-        "wp-launchpad/action-scheduler": "^0.0",
         "woocommerce/action-scheduler": "^3.4",
-        "berlindb/core": "^2.0",
+        "wp-coding-standards/wpcs": "^2",
+        "wp-launchpad/action-scheduler": "^0.0",
+        "wp-launchpad/autoresolver": "^0.0",
         "wp-launchpad/berlindb": "^1.0",
-        "wp-launchpad/renderer": "^1.0"
+        "wp-launchpad/cli": "^1.0",
+        "wp-launchpad/cli-installer": "^0.0",
+        "wp-launchpad/core": "^0.0",
+        "wp-launchpad/renderer": "^1.0",
+        "wp-launchpad/take-off": "^1.0",
+        "wp-media/phpunit": "^3.0",
+        "wp-launchpad/front": "^0.0"
     },
     "autoload": {
         "classmap": [
@@ -94,18 +95,20 @@
                 "wp-launchpad/autoresolver",
                 "wp-launchpad/action-scheduler",
                 "berlindb/core",
-                "wp-launchpad/renderer"
+                "wp-launchpad/renderer",
+                "wp-launchpad/front"
             ]
         }
     },
     "scripts": {
         "test-unit": "\"vendor/bin/phpunit\" --testsuite unit --colors=always --configuration tests/Unit/phpunit.xml.dist",
-        "test-integration": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration tests/Integration/phpunit.xml.dist --exclude-group AdminOnly",
+        "test-integration": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration tests/Integration/phpunit.xml.dist --exclude-group AdminOnly,,",
         "test-integration-adminonly": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration tests/Integration/phpunit.xml.dist --group AdminOnly",
         "run-tests": [
             "@test-unit",
             "@test-integration",
-            "@test-integration-adminonly"
+            "@test-integration-adminonly",
+            "@test-integration-"
         ],
         "run-stan": "vendor/bin/phpstan analyze --memory-limit=2G --no-progress",
         "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
@@ -124,7 +127,8 @@
             "\"vendor/bin/mozart\" compose",
             "composer dump-autoload"
         ],
-        "code-coverage": "\"vendor/bin/phpunit\" --testsuite unit --colors=always --configuration tests/Unit/phpunit.xml.dist --coverage-clover=tests/report/coverage.clover"
+        "code-coverage": "\"vendor/bin/phpunit\" --testsuite unit --colors=always --configuration tests/Unit/phpunit.xml.dist --coverage-clover=tests/report/coverage.clover",
+        "test-integration-": "\"vendor/bin/phpunit\" --testsuite integration --colors=always --configuration tests/Integration/phpunit.xml.dist --group "
     },
     "minimum-stability": "stable",
     "prefer-stable": true

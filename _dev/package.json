@@ -1,0 +1,26 @@
+{
+  "name": "rocket-launcher-front",
+  "version": "1.0.0",
+  "browserslist": [
+    "extends @roots/browserslist-config"
+  ],
+  "scripts": {
+    "dev": "bud dev",
+    "build": "bud build",
+    "bud": "bud"
+  },
+  "devDependencies": {
+    "-": "0.0.1",
+    "@roots/bud": "^6.12.3",
+    "@roots/bud-babel": "^6.12.3",
+    "@roots/bud-react": "^6.12.3",
+    "@wordpress/date": "^4.34.0",
+    "@wordpress/i18n": "^4.34.0",
+    "@wordpress/icons": "^9.25.0",
+    "caniuse-lite": "^1.0.30001464"
+  },
+  "dependencies": {
+    "@wordpress/components": "^25.0.0",
+    "@wordpress/element": "^5.11.0"
+  }
+}

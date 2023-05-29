@@ -3,9 +3,13 @@ namespace CoquardcyrWpArticleScheduler\Engine\Admin;
 
 use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
 use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadCore\EventManagement\SubscriberInterface;
+use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadFront\UseAssets;
+use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadFront\UseAssetsInterface;
 use WP_Post;
 
-class Subscriber implements SubscriberInterface {
+class Subscriber implements SubscriberInterface, UseAssetsInterface {
+
+	use UseAssets;
 
 	/**
 	 * @var ArticleSchedules
@@ -49,6 +53,7 @@ class Subscriber implements SubscriberInterface {
 			'admin_init'   => 'add_meta_box',
 			'save_post'    => 'save_meta',
 			'post_updated' => [ 'maybe_delete_schedule', 10, 3 ],
+			'admin_enqueue_scripts' => 'register_js',
 		];
 	}
 
@@ -142,5 +147,9 @@ class Subscriber implements SubscriberInterface {
 			return;
 		}
 		$this->query->delete_by_post_id( $post_id );
+	}
+
+	public function register_js() {
+		$this->assets->enqueue_script('app', 'app.js', ['jquery'], true);
 	}
 }
