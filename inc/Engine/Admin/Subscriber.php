@@ -180,6 +180,14 @@ class Subscriber implements SubscriberInterface, UseAssetsInterface {
 
 	public function register_js() {
 		$key = 'app';
+
+		$screen = get_current_screen();
+
+		if(! $screen->is_block_editor || $screen->action === 'add') {
+			return;
+		}
+
+
 		$this->assets->enqueue_script($key, 'app.js', ['jquery'], true);
 	}
 }
