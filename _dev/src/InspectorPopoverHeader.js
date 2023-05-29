@@ -11,7 +11,6 @@ import {
 } from '@wordpress/components';
 import { closeSmall } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
-import React from 'react'
 export default function InspectorPopoverHeader( {
                                                     title,
                                                     help,

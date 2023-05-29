@@ -1,5 +1,4 @@
-import React from 'react'
-import {Popover as WPPopover, DateTimePicker} from "@wordpress/components";
+import {DateTimePicker} from "@wordpress/components";
 import {__} from "@wordpress/i18n";
 import InspectorPopoverHeader from "./InspectorPopoverHeader";
 import {getSettings, isInTheFuture} from '@wordpress/date';

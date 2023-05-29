@@ -1,4 +1,3 @@
-import React from 'react'
 import {useMemo, useState} from "@wordpress/element";
 import {CustomSelectControl, Dropdown, PanelRow, Popover, SlotFillProvider} from '@wordpress/components';
 import DateTimePickerField from "./DateTimePickerField";
