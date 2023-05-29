@@ -4,11 +4,13 @@ namespace CoquardcyrWpArticleScheduler\Database;
 
 use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
 use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadCore\Container\AbstractServiceProvider;
+use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\HasUninstallerServiceProviderInterface;
+use CoquardcyrWpArticleScheduler\Dependencies\League\Container\Definition\Definition;
 
 /**
  * Service provider.
  */
-class ServiceProvider extends AbstractServiceProvider {
+class ServiceProvider extends AbstractServiceProvider implements HasUninstallerServiceProviderInterface {
 
 
 	/**
@@ -26,5 +28,15 @@ class ServiceProvider extends AbstractServiceProvider {
 				$this->getContainer()->get( Tables\ArticleSchedules::class );
 			}
 			);
+
+		$this->register_service(Uninstaller::class, function (Definition $definition) {
+			$definition->addArgument($this->getContainer()->get(Tables\ArticleSchedules::class));
+		});
+	}
+
+	public function get_uninstallers(): array {
+		return [
+			Uninstaller::class,
+		];
 	}
 }

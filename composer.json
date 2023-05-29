@@ -61,7 +61,8 @@
         "wp-launchpad/front": "^0.0",
         "wp-launchpad/renderer": "^1.0",
         "wp-launchpad/take-off": "^1.0",
-        "wp-media/phpunit": "^3.0"
+        "wp-media/phpunit": "^3.0",
+        "wp-launchpad/uninstaller": "^0.0"
     },
     "autoload": {
         "classmap": [
@@ -97,7 +98,8 @@
                 "wp-launchpad/action-scheduler",
                 "berlindb/core",
                 "wp-launchpad/renderer",
-                "wp-launchpad/front"
+                "wp-launchpad/front",
+                "wp-launchpad/uninstaller"
             ]
         }
     },

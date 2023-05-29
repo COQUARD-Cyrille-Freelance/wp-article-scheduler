@@ -3,10 +3,11 @@ namespace CoquardcyrWpArticleScheduler\Engine\Cron;
 
 use CoquardcyrWpArticleScheduler\Database\Queries\ArticleSchedules;
 use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadCore\EventManagement\SubscriberInterface;
+use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\UninstallerInterface;
 use CoquardcyrWpArticleScheduler\Engine\Queue\Queue;
 use function WP_Cypress\Utils\now;
 
-class Subscriber implements SubscriberInterface {
+class Subscriber implements SubscriberInterface, UninstallerInterface {
 
 	/**
 	 * @var string
@@ -144,5 +145,10 @@ class Subscriber implements SubscriberInterface {
 		$post->post_status = $status;
 
 		wp_update_post($post);
+	}
+
+	public function uninstall() {
+		wp_clear_scheduled_hook("{$this->prefix}process_scheduled_posts");
+		$this->queue->clear();
 	}
 }

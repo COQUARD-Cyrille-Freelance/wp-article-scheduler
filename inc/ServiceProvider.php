@@ -2,7 +2,10 @@
 
 namespace CoquardcyrWpArticleScheduler;
 
-class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider {
+use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\HasUninstallerServiceProviderInterface;
+use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\UninstallServiceProviderInterface;
+
+class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider implements HasUninstallerServiceProviderInterface {
 
 	/**
 	 * Return IDs from admin subscribers.
@@ -23,6 +26,12 @@ class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider
 	public function get_common_subscribers(): array {
 		return [
 			\CoquardcyrWpArticleScheduler\Engine\Cron\Subscriber::class,
+		];
+	}
+
+	public function get_uninstallers(): array {
+		return [
+			\CoquardcyrWpArticleScheduler\Engine\Admin\Subscriber::class,
 		];
 	}
 }
