@@ -8,7 +8,8 @@ module.exports = async bud => {
 		{
 			jQuery: 'window.jquery',
 			wp: 'window.wp',
-			react: 'window.React'
+			react: 'window.React',
+			coquardcyrwparticleschedulerapp_data: 'window.coquardcyrwparticleschedulerapp_data',
 	    }
         )
 	await bud

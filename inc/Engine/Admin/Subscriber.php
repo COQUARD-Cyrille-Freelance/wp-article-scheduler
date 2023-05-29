@@ -82,14 +82,16 @@ class Subscriber implements SubscriberInterface, UseAssetsInterface {
 		$keys = [];
 
 		$keys['post_id']        = $post->ID;
-		$keys['current_status'] = $scheduled && $scheduled->status ? : '';
-		$keys['date']           = $scheduled && $scheduled->status ? date( 'Y-m-d', $scheduled->change_date ) : '';
-		$keys['min_date']       = date( 'Y-m-d', time() );
+		$keys['current_status'] = $scheduled && $scheduled->status ? $scheduled->status : '';
+		$keys['date']           = $scheduled && $scheduled->status ? str_replace(' ', 'T', wp_date( 'Y-m-d h:m', $scheduled->change_date )) : '';
+		$keys['min_date']       = wp_date( 'Y-m-d', time() );
 		$parameters             = [
 			'keys' => $keys,
 		];
 
 		$parameters['parameters'] = $this->generate_view_parameters( $parameters['keys'], $post );
+
+		$this->register_localize_js($parameters);
 
 		do_action( "{$this->prefix}render_template", $template, $parameters );
 	}
@@ -108,6 +110,33 @@ class Subscriber implements SubscriberInterface, UseAssetsInterface {
 				'prefix'   => $this->prefix,
 			]
 		);
+	}
+
+	protected function register_localize_js(array $parameters) {
+		$full_key = $this->assets->get_full_key('app');
+
+		$statuses = [
+			[
+				'key' => '',
+				'name' => __('Unselected', 'coquardcyrwparticlescheduler'),
+			]
+		];
+
+		foreach ($parameters['parameters']['statuses'] as $key => $value) {
+			$statuses []= [
+				'key' => $key,
+				'name' => $value,
+			];
+		}
+
+		wp_localize_script($full_key, $full_key . '_data', [
+			'statuses' => $statuses,
+			'prefix' => $this->prefix,
+			'initial' => [
+				'date' => $parameters['parameters']['date'],
+				'status' => $parameters['parameters']['current_status'],
+			],
+		]);
 	}
 
 	public function save_meta( $post_id ) {
@@ -150,6 +179,7 @@ class Subscriber implements SubscriberInterface, UseAssetsInterface {
 	}
 
 	public function register_js() {
-		$this->assets->enqueue_script('app', 'app.js', ['jquery'], true);
+		$key = 'app';
+		$this->assets->enqueue_script($key, 'app.js', ['jquery'], true);
 	}
 }

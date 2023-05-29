@@ -44,9 +44,9 @@ class ArticleSchedules extends Row {
 
 	public function to_array() {
 		$data = parent::to_array();
-		$data['change_date'] = date('Y-m-d H:i:s', $this->change_date);
-		$data['modified'] = date('Y-m-d H:i:s', $this->modified);
-		$data['last_accessed'] = date('Y-m-d H:i:s', $this->last_accessed);
+		$data['change_date'] = wp_date('Y-m-d H:i:s', $this->change_date);
+		$data['modified'] = wp_date('Y-m-d H:i:s', $this->modified);
+		$data['last_accessed'] = wp_date('Y-m-d H:i:s', $this->last_accessed);
 		return $data;
 	}
 }

@@ -4,11 +4,17 @@ import {createRoot} from 'react-dom/client';
 
 jQuery(function () {
 
-    const prefix = 'coquardcyr_wp_article_scheduler_';
+
+
+    const prefix = coquardcyrwparticleschedulerapp_data.prefix;
+
+    const statuses = coquardcyrwparticleschedulerapp_data.statuses;
+
+    const initial = coquardcyrwparticleschedulerapp_data.initial;
 
     const root = document.getElementById(`${prefix}app`);
 
     if(root){
-        createRoot(root).render(<App prefix={prefix} />);
+        createRoot(root).render(<App prefix={prefix} statuses={statuses} initial={initial} />);
     }
 });
