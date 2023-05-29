@@ -22,7 +22,7 @@ module.exports = defineConfig({
     specPattern: "**/*.feature",
   },
   wp: {
-    version: ["5.7"],
+    version: ["6.2"],
     plugins: ["../../", "end_to_end_helper/"],
 
     phpVersion: "8.0",
