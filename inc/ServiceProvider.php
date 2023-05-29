@@ -3,7 +3,6 @@
 namespace CoquardcyrWpArticleScheduler;
 
 use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\HasUninstallerServiceProviderInterface;
-use CoquardcyrWpArticleScheduler\Dependencies\LaunchpadUninstaller\Uninstall\UninstallServiceProviderInterface;
 
 class ServiceProvider extends Dependencies\LaunchpadAutoresolver\ServiceProvider implements HasUninstallerServiceProviderInterface {
 
